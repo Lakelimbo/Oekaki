@@ -1,0 +1,1 @@
+<div class="size-6 bg-foreground rounded-full"></div>

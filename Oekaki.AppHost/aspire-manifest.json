@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json.schemastore.org/aspire-8.0.json",
+  "resources": {
+    "coreapi": {
+      "type": "project.v0",
+      "path": "../Oekaki.Core/Oekaki.Core.csproj",
+      "env": {
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_RETRY": "in_memory",
+        "ASPNETCORE_FORWARDEDHEADERS_ENABLED": "true",
+        "HTTP_PORTS": "{coreapi.bindings.http.targetPort}"
+      },
+      "bindings": {
+        "http": {
+          "scheme": "http",
+          "protocol": "tcp",
+          "transport": "http",
+          "external": true
+        },
+        "https": {
+          "scheme": "https",
+          "protocol": "tcp",
+          "transport": "http",
+          "external": true
+        }
+      }
+    },
+    "frontend": {
+      "type": "dockerfile.v0",
+      "path": "../Oekaki.Web/Dockerfile",
+      "context": "../Oekaki.Web",
+      "env": {
+        "NODE_ENV": "development",
+        "services__coreapi__http__0": "{coreapi.bindings.http.url}",
+        "services__coreapi__https__0": "{coreapi.bindings.https.url}",
+        "PORT": "{frontend.bindings.http.targetPort}"
+      },
+      "bindings": {
+        "http": {
+          "scheme": "http",
+          "protocol": "tcp",
+          "transport": "http",
+          "targetPort": 5173,
+          "external": true
+        }
+      }
+    }
+  }
+}
