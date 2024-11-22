@@ -1,4 +1,4 @@
-namespace Oekaki.Core;
+namespace Oekaki.Data.Models;
 
 public class WeatherForecast
 {
