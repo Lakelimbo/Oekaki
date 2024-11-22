@@ -12,8 +12,8 @@ using Oekaki.Data;
 namespace Oekaki.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241121223645_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241122141158_AddIdentity")]
+    partial class AddIdentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -165,6 +165,9 @@ namespace Oekaki.Data.Migrations
                         .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Completed")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Description")
                         .IsRequired()

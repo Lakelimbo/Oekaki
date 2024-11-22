@@ -11,6 +11,7 @@
 
 <svelte:element
 	this={href ? 'a' : 'div'}
+	{href}
 	class={cn('flex items-center gap-2', className)}
 	{...restProps}
 >

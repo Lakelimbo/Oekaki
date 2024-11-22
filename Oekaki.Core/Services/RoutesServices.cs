@@ -1,6 +1,10 @@
-namespace Oekaki.Core.Infrastructure.Resources;
+using System.Configuration;
+using System.Security.Cryptography.X509Certificates;
+using Microsoft.OpenApi.Models;
 
-public static class Routes
+namespace Oekaki.Core.Services;
+
+public static class RoutesServices
 {
     public static IServiceCollection AddRoutes(this IServiceCollection services)
     {

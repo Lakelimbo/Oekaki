@@ -1,4 +1,4 @@
-using Oekaki.Core.Infrastructure.Resources;
+using Oekaki.Core.Services;
 using Oekaki.Data;
 using Oekaki.Data.Models;
 
@@ -8,6 +8,7 @@ builder.AddNpgsqlDbContext<ApplicationDbContext>("oekakidb");
 builder.AddServiceDefaults();
 
 // Add services to the container.
+builder.Services.AddCustomAuthentication();
 builder.Services.AddRoutes();
 
 var app = builder.Build();
@@ -17,20 +18,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
-    // using (var scope = app.Services.CreateScope())
-    // {
-    //     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    //     context.Database.EnsureCreated();
-
-    //     if (!context.Tests.Any())
-    //     {
-    //         context.Tests.Add(
-    //             new Test { Title = "Test no. 1", Description = "Lorem Ipsum Dolor Sit Amet!!" }
-    //         );
-    //         context.SaveChanges();
-    //     }
-    // }
+    app.MapSwagger();
 }
 else
 {
@@ -43,7 +31,6 @@ else
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-
-// app.MapIdentityApi<User>();
+app.MapIdentityApi<User>();
 
 app.Run();
