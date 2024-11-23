@@ -43,5 +43,4 @@ export const actions = {
 		redirect(303, '/login');
 	}
 };
-null as any as PageServerLoad;
-null as any as Actions;
+;null as any as PageServerLoad;;null as any as Actions;

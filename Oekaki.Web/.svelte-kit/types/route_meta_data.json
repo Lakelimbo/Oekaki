@@ -4,8 +4,18 @@
 		"src/routes/+layout.server.ts",
 		"src/routes/+layout.server.ts"
 	],
-	"/(auth)": ["src/routes/+layout.server.ts"],
-	"/": ["src/routes/+layout.server.ts"],
-	"/(auth)/login": ["src/routes/(auth)/login/+page.server.ts", "src/routes/+layout.server.ts"],
-	"/(auth)/register": ["src/routes/(auth)/register/+page.server.ts", "src/routes/+layout.server.ts"]
+	"/(auth)": [
+		"src/routes/+layout.server.ts"
+	],
+	"/": [
+		"src/routes/+layout.server.ts"
+	],
+	"/(auth)/login": [
+		"src/routes/(auth)/login/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	],
+	"/(auth)/register": [
+		"src/routes/(auth)/register/+page.server.ts",
+		"src/routes/+layout.server.ts"
+	]
 }

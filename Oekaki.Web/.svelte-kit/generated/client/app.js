@@ -13,17 +13,15 @@ export const nodes = [
 export const server_loads = [0];
 
 export const dictionary = {
-	'/(main)': [~6, [3]],
-	'/(auth)/login': [~4, [2]],
-	'/(auth)/register': [~5, [2]]
-};
+		"/(main)": [~6,[3]],
+		"/(auth)/login": [~4,[2]],
+		"/(auth)/register": [~5,[2]]
+	};
 
 export const hooks = {
-	handleError: ({ error }) => {
-		console.error(error);
-	},
+	handleError: (({ error }) => { console.error(error) }),
 
-	reroute: () => {}
+	reroute: (() => {})
 };
 
 export { default as root } from '../root.js';

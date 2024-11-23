@@ -63,4 +63,4 @@ export const actions = {
 		redirect(303, '/');
 	}
 };
-null as any as Actions;
+;null as any as Actions;
