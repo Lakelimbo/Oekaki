@@ -7,7 +7,7 @@ declare global {
 	namespace App {
 		// interface Error {}
 		interface Locals {
-			user?: components['schemas']["UserProtectedDto"];
+			user?: components['schemas']['UserProtectedDto'];
 		}
 		// interface PageData {}
 		// interface PageState {}
