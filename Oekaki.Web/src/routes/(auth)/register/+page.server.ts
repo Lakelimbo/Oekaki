@@ -21,11 +21,14 @@ export const actions: Actions = {
 			});
 		}
 
-		const request = await client.POST('/register', {
+		const request = await client.POST('/Users/signup', {
 			body: {
+				// userName which is actually the email... Ikr
+				userName: form.data.email,
 				email: form.data.email,
 				password: form.data.password,
-				username: form.data.username
+				passwordConfirm: form.data.passwordConfirm,
+				nickname: form.data.username
 			},
 			fetch: event.fetch,
 			credentials: 'include'
@@ -33,9 +36,7 @@ export const actions: Actions = {
 
 		if (!request.response.ok) {
 			error(request.response.status, {
-				message: request.error?.errors?.['DuplicateUsername']
-					? `Email '${form.data.email} is already taken.'`
-					: 'An unknown error happened. Please try again'
+				message: 'An error happened. Please try again.'
 			});
 		}
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Oekaki.Data;
@@ -11,9 +12,11 @@ using Oekaki.Data;
 namespace Oekaki.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241124143043_ModifyIdentitySchema")]
+    partial class ModifyIdentitySchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,9 +195,15 @@ namespace Oekaki.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("UserId2")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("UserId2");
 
                     b.ToTable("UserClaims", "Oekaki");
                 });
@@ -214,9 +223,15 @@ namespace Oekaki.Data.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("UserId2")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("LoginProvider", "ProviderKey");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("UserId2");
 
                     b.ToTable("UserLogins", "Oekaki");
                 });
@@ -229,9 +244,15 @@ namespace Oekaki.Data.Migrations
                     b.Property<string>("RoleId")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserId2")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId2");
 
                     b.ToTable("UserRoles", "Oekaki");
                 });
@@ -247,10 +268,16 @@ namespace Oekaki.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
+                    b.Property<string>("UserId2")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Value")
                         .HasColumnType("text");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.HasIndex("UserId2");
 
                     b.ToTable("UserTokens", "Oekaki");
                 });
@@ -268,9 +295,15 @@ namespace Oekaki.Data.Migrations
 
             modelBuilder.Entity("Oekaki.Data.Models.UserClaim", b =>
                 {
-                    b.HasOne("Oekaki.Data.Models.User", "User")
+                    b.HasOne("Oekaki.Data.Models.User", null)
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oekaki.Data.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId2")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -279,9 +312,15 @@ namespace Oekaki.Data.Migrations
 
             modelBuilder.Entity("Oekaki.Data.Models.UserLogin", b =>
                 {
-                    b.HasOne("Oekaki.Data.Models.User", "User")
+                    b.HasOne("Oekaki.Data.Models.User", null)
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oekaki.Data.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId2")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -296,9 +335,15 @@ namespace Oekaki.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Oekaki.Data.Models.User", "User")
+                    b.HasOne("Oekaki.Data.Models.User", null)
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oekaki.Data.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId2")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -309,9 +354,15 @@ namespace Oekaki.Data.Migrations
 
             modelBuilder.Entity("Oekaki.Data.Models.UserToken", b =>
                 {
-                    b.HasOne("Oekaki.Data.Models.User", "User")
+                    b.HasOne("Oekaki.Data.Models.User", null)
                         .WithMany("Tokens")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Oekaki.Data.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId2")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

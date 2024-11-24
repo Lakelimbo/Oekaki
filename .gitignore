@@ -2,12 +2,12 @@ test-results
 node_modules
 
 # Output
-.output
-.vercel
-.svelte-kit
-build
-bin
-obj
+.output/
+.vercel/
+.svelte-kit/
+build/
+bin/
+obj/
 
 # OS
 .DS_Store

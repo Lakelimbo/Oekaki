@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="../Oekaki.Core/Oekaki.Core.csproj" />
+    <ProjectReference Include="../Oekaki.Data/Oekaki.Data.csproj" />
     <ProjectReference Include="../Oekaki.MigrationService/Oekaki.MigrationService.csproj" />
   </ItemGroup>
 

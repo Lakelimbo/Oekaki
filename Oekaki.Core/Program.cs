@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Oekaki.Core.Services;
 using Oekaki.Data;
 using Oekaki.Data.Models;
@@ -31,6 +32,6 @@ else
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-app.MapIdentityApi<User>();
+app.MapGroup("/Users").MapIdentityApi<User>();
 
 app.Run();

@@ -1,15 +1,19 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
+var postgres = builder
+    .AddPostgres("postgres")
+    .WithDataVolume(isReadOnly: false)
+    .AddDatabase("oekakidb");
+
+builder.AddProject<Projects.Oekaki_MigrationService>("migrations").WithReference(postgres);
+
 var redis = builder.AddRedis("cache");
-var postgres = builder.AddPostgres("postgres").AddDatabase("oekakidb");
 
 var core = builder
     .AddProject<Projects.Oekaki_Core>("coreapi")
     .WaitFor(postgres)
     .WithReference(postgres)
     .WithExternalHttpEndpoints();
-
-builder.AddProject<Projects.Oekaki_MigrationService>("migrations").WithReference(postgres);
 
 var frontend = builder
     .AddNpmApp("frontend", "../Oekaki.Web")

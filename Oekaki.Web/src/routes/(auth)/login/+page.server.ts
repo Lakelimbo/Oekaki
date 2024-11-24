@@ -27,7 +27,7 @@ export const actions: Actions = {
 			});
 		}
 
-		const request = await client.POST('/login', {
+		const request = await client.POST('/Users/login', {
 			body: {
 				email: form.data.email,
 				password: form.data.password

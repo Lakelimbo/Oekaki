@@ -3,7 +3,7 @@ import type { Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 
 export const validateAuth: Handle = async ({ event, resolve }) => {
-	const request = await client.GET('/manage/info', {
+	const request = await client.GET('/Users/me', {
 		fetch: event.fetch,
 		credentials: 'include'
 	});

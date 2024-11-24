@@ -20,19 +20,17 @@ public static class AuthenticationServices
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequireUppercase = false;
 
-            // May need more configuration if we want to allow other
-            // writing systems (e.g. Kana, Hanzi, etc.)
-            options.User.AllowedUserNameCharacters =
-                "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
             options.User.RequireUniqueEmail = true;
         });
 
         services.ConfigureApplicationCookie(options =>
         {
-            options.Cookie.Name = "OekakiIdentity";
+            options.Cookie.Name = ".Oekaki.Identitiy.Application";
         });
 
-        services.AddIdentityApiEndpoints<User>().AddEntityFrameworkStores<ApplicationDbContext>();
+        services
+            .AddIdentityApiEndpoints<User>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
 
         return services;
     }

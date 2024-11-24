@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="../Oekaki.Data/Oekaki.Data.csproj" />
     <ProjectReference Include="../Oekaki.ServiceDefaults/Oekaki.ServiceDefaults.csproj" />
+    <ProjectReference Include="../Oekaki.Shared/Oekaki.Shared.csproj" />
   </ItemGroup>
 
 </Project>

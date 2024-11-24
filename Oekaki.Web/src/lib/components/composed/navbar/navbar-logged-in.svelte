@@ -2,12 +2,12 @@
 	import * as Avatar from '$lib/components/ui/avatar';
 	import type { components } from '$lib/data/openapi-schema-v1';
 
-	let { email }: components['schemas']['InfoResponse'] = $props();
+	let { nickname }: components['schemas']['UserProtectedDto'] = $props();
 
-	const firstLetter = email?.substring(0, 1).toUpperCase() ?? '?';
+	const firstLetter = nickname?.substring(0, 1).toUpperCase() ?? '?';
 </script>
 
-<a href="/logout" class="block">
+<a href="/logout" class="block" data-sveltekit-preload-data={false} data-sveltekit-reload>
 	<Avatar.Root>
 		<Avatar.Fallback>{firstLetter}</Avatar.Fallback>
 	</Avatar.Root>
